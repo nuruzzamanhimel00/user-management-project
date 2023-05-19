@@ -3,7 +3,9 @@
 @section('content')
 <div class="login-area">
         <div class="container">
+
             <div class="login-box ptb--100">
+
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="login-form-head">
@@ -11,6 +13,7 @@
 
                     </div>
                     <div class="login-form-body">
+                        @include('backend.layouts.partials.validation-errors')
                         <div class="form-gp">
                             <label for="exampleInputEmail1">Email address</label>
                             <input type="email" class="@error('email') is-invalid @enderror"  name="email"  id="exampleInputEmail1"  value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -55,7 +58,7 @@
 
                         </div>
                         <div class="form-footer text-center mt-5">
-                            <p class="text-muted">Don't have an account? <a href="register.html">Sign up</a></p>
+                            <p class="text-muted">Don't have an account? <a href="{{route('register')}}">Sign up</a></p>
                         </div>
                     </div>
                 </form>
