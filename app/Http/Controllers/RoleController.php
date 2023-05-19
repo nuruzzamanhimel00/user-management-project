@@ -65,7 +65,11 @@ class RoleController extends Controller
      */
     public function show(string $id)
     {
-        //
+        set_page_meta('Role view');
+        $role =  $this->rolesService->roleFindById($id);
+        $permissions = $this->rolesService->getAllLatestPermissions();
+        $permission_groups = User::getPermissionGroups();
+        return view("backend.pages.roles.show",compact('role','permissions','permission_groups'));
     }
 
     /**
@@ -73,7 +77,12 @@ class RoleController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        set_page_meta('Role Update');
+        $role =  $this->rolesService->roleFindById($id);
+        $permissions = $this->rolesService->getAllLatestPermissions();
+        $permission_groups = User::getPermissionGroups();
+
+        return view("backend.pages.roles.edit",compact('role','permissions','permission_groups'));
     }
 
     /**
@@ -81,7 +90,22 @@ class RoleController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        try {
+            DB::beginTransaction();
+            $role =  $this->rolesService->roleFindById($id);
+            $permissions = $request->permissions;
+            if(!is_null($role)){
+                $role->update(['name'=>$request->name]);
+            }
+            if(!empty($permissions)){
+                $this->rolesService->roleHasPermissions($role, $permissions);
+            }
+            DB::commit();
+            return redirect()->route('roles.index')->with('success','Role Updated Sucessfully');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->route('roles.index')->with('success','Somthing is wrong !!');
+        }
     }
 
     /**

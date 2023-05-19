@@ -53,4 +53,10 @@ class User extends Authenticatable
         ->groupBy('group_name')
         ->get();
     }
+    public static function roleWiseAllParm($role_id){
+        $roleWiseAllParm =  DB::table('role_has_permissions')
+                        ->where('role_id',$role_id)
+                        ->get();
+        return $roleWiseAllParm;
+    }
 }
