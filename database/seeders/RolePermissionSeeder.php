@@ -53,6 +53,17 @@ class RolePermissionSeeder extends Seeder
                         'Module Delete',
                     ]
                 ],
+                [
+                    'group_name' => 'Roles',
+                    'permissions' => [
+                        'Roles List',
+                        'Roles Edit',
+                        'Roles Add',
+                        'Roles Store',
+                        'Roles Update',
+                        'Roles Delete',
+                    ]
+                ],
             ];
             foreach($permissions as $permission){
                 foreach($permission['permissions'] as $pm){
