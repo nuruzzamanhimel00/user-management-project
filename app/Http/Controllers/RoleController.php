@@ -113,6 +113,9 @@ class RoleController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $role =  $this->rolesService->roleFindById($id);
+        if($role->delete()){
+            return redirect()->back()->with('success','Role Deleted successfuly');
+        }
     }
 }
