@@ -8,6 +8,8 @@
         <div class="menu-inner">
             <nav>
                 <ul class="metismenu" id="menu">
+                    <li><a href="{{route('home')}}"><i class="ti-dashboard"></i> <span>Dashboard</span></a></li>
+                    <li><a href="{{route('roles.index')}}"><i class="ti-dashboard"></i> <span>Role</span></a></li>
                     <li class="active">
                         <a href="javascript:void(0)" aria-expanded="true"><i class="ti-dashboard"></i><span>dashboard</span></a>
                         <ul class="collapse">

@@ -28,3 +28,8 @@
     <!-- others plugins -->
     <script src="{{asset('backend/assets/js/plugins.js')}}"></script>
     <script src="{{asset('backend/assets/js/scripts.js')}}"></script>
+
+    <script src="{{asset('backend/sweetalert/sweetalert.min.js')}}"></script>
+
+    <script src="{{asset('backend/js/custom-script.js')}}"></script>
+    @stack('script')
