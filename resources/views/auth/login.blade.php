@@ -13,7 +13,7 @@
 
                     </div>
                     <div class="login-form-body">
-                        @include('backend.layouts.partials.validation-errors')
+                        @include('backend.layouts.partials.notifications')
                         <div class="form-gp">
                             <label for="exampleInputEmail1">Email address</label>
                             <input type="email" class="@error('email') is-invalid @enderror"  name="email"  id="exampleInputEmail1"  value="{{ old('email') }}" required autocomplete="email" autofocus>

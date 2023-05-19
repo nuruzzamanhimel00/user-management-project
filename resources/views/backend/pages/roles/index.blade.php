@@ -11,6 +11,7 @@
                 <h4 class="card-title mb-3">{{get_page_meta('title', true)}}</h4>
 
                 <a href="{{ route('roles.create') }}" class="btn btn-primary float-right mb-2">Add New Role</a>
+                @include("backend.layouts.partials.notifications")
                 <table id="dataTable" class="text-center">
                     <thead class="bg-light text-capitalize">
                         <tr>

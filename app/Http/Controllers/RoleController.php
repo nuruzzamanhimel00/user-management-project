@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\Common\RolesService;
+use Auth;
+use App\Models\User;
 
 use Illuminate\Http\Request;
-use Auth;
+use Illuminate\Support\Facades\DB;
+use App\Services\Common\RolesService;
 
 class RoleController extends Controller
 {
@@ -31,7 +33,11 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        set_page_meta('Role Create');
+        $permissions = $this->rolesService->getAllLatestPermissions();
+        $permission_groups = User::getPermissionGroups();
+        // dd($permission_groups);
+        return view('backend.pages.roles.create',compact('permissions','permission_groups'));
     }
 
     /**
@@ -39,7 +45,19 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            DB::beginTransaction();
+            $role = $this->rolesService->roleUpdateOrCreate($request->name);
+            $permissions = $request->permissions;
+            if(!empty($permissions)){
+                $this->rolesService->roleHasPermissions($role, $permissions);
+            }
+            DB::commit();
+            return redirect()->route('roles.index')->with('success','Role Created Sucessfully');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->route('roles.index')->with('error','Something is wrong!!');
+        }
     }
 
     /**

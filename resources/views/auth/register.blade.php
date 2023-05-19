@@ -11,7 +11,7 @@
 
                 </div>
                 <div class="login-form-body">
-                    @include('backend.layouts.partials.validation-errors')
+                    @include('backend.layouts.partials.notifications')
                     <div class="form-gp">
                         <label for="exampleInputName1">Full Name</label>
                         <input type="text" id="exampleInputName1" class="@error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
