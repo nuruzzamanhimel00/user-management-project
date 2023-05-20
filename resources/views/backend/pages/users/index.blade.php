@@ -10,7 +10,7 @@
             <div class="card-body">
                 <h4 class="card-title mb-3">{{get_page_meta('title', true)}}</h4>
 
-                <a href="{{ route('roles.create') }}" class="btn btn-primary float-right mb-2">Add New Role</a>
+                <a href="{{ route('users.create') }}" class="btn btn-primary float-right mb-2">Add New User</a>
                 @include("backend.layouts.partials.notifications")
                 <table id="dataTable" class="text-center">
                     <thead class="bg-light text-capitalize">
