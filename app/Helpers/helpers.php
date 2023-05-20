@@ -58,3 +58,12 @@ if (!function_exists('user_assign_roles_display')) {
     }
 }
 
+
+function generateSlug($value)
+{
+    try {
+        return preg_replace('/\s+/u', '-', trim($value));
+    } catch (\Exception $e) {
+        return '';
+    }
+}
