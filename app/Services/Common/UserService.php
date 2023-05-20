@@ -57,6 +57,17 @@ class UserService
         }
     }
 
+    public function userDelete($user){
+        //model exiisting roles
+        $modelHasRoles =  $this->rolesService->modeHasAllRoles($user) ;
+        //user role delete
+        if(count($modelHasRoles) > 0){
+            $this->rolesService->modelRolesDetach($user) ;
+        }
+        $user->delete();
+        return true;
+    }
+
     public function userUpdateOrCreate($data, $id){
         $data = collect($data)->toArray();
         if($id){
