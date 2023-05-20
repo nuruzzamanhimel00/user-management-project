@@ -15,12 +15,12 @@ class ProductController extends Controller
     {
         $this->productSerivce = $productSerivce;
 
-        // $this->middleware(['permission:User List'])->only(['index']);
-        // $this->middleware(['permission:User Add'])->only(['create']);
-        // $this->middleware(['permission:User Store'])->only(['store']);
-        // $this->middleware(['permission:User Edit'])->only(['edit']);
-        // $this->middleware(['permission:User Update'])->only(['update']);
-        // $this->middleware(['permission:User Delete'])->only(['destroy']);
+        $this->middleware(['permission:Product List'])->only(['index']);
+        $this->middleware(['permission:Product Add'])->only(['create']);
+        $this->middleware(['permission:Product Store'])->only(['store']);
+        $this->middleware(['permission:Product Edit'])->only(['edit']);
+        $this->middleware(['permission:Product Update'])->only(['update']);
+        $this->middleware(['permission:Product Delete'])->only(['destroy']);
     }
     /**
      * Display a listing of the resource.

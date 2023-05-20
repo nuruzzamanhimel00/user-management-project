@@ -43,14 +43,14 @@ class RolePermissionSeeder extends Seeder
                     ]
                 ],
                 [
-                    'group_name' => 'Module',
+                    'group_name' => 'Product',
                     'permissions' => [
-                        'Module List',
-                        'Module Edit',
-                        'Module Add',
-                        'Module Store',
-                        'Module Update',
-                        'Module Delete',
+                        'Product List',
+                        'Product Edit',
+                        'Product Add',
+                        'Product Store',
+                        'Product Update',
+                        'Product Delete',
                     ]
                 ],
                 [

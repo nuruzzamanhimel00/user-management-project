@@ -37,8 +37,10 @@
                         </ul>
                     </li>
                     @endcanany
+                    @can('Product List')
 
                     <li><a href="{{route('products.index')}}"><i class="ti-dashboard"></i> <span>Products</span></a></li>
+                    @endcan
                 </ul>
             </nav>
         </div>
