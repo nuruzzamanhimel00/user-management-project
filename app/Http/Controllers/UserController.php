@@ -17,6 +17,12 @@ class UserController extends Controller
     {
         $this->userService = $userService;
         $this->rolesService = $rolesService;
+        $this->middleware(['permission:User List'])->only(['index']);
+        $this->middleware(['permission:User Add'])->only(['create']);
+        $this->middleware(['permission:User Store'])->only(['store']);
+        $this->middleware(['permission:User Edit'])->only(['edit']);
+        $this->middleware(['permission:User Update'])->only(['update']);
+        $this->middleware(['permission:User Delete'])->only(['destroy']);
     }
     public function index()
     {

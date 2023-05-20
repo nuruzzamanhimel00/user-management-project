@@ -33,9 +33,11 @@
                             <td>{{ user_assign_roles_display($user->id) }}</td>
 
                             <td>
+                                @can('User Edit')
 
                                 <a href="{{ route('users.edit',['user'=>$user->id]) }}" class="btn btn-success btn-sm">Edit</a>
-
+                                @endcan
+                                @can('User Delete')
                                 @if($user->id != auth()->user()->id)
                                 <a href="{{ route('users.destroy',['user'=>$user->id]) }}"
                                    data-dltform="role_form_{{ $user->id }}"
@@ -47,6 +49,8 @@
                                     @method("DELETE")
                                 </form>
                                 @endif
+                                @endcan
+
                             </td>
 
                         </tr>

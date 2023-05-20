@@ -15,7 +15,13 @@
                     'Roles Edit',
                     'Roles Add',
                     'Roles Store',
-                    'Roles Delete'])
+                    'Roles Delete',
+                    'User List',
+                    'User Edit',
+                    'User Add',
+                    'User Store',
+                    'User Delete',
+                    ])
                     <li class="active">
 
                         <a href="javascript:void(0)" aria-expanded="true"><i class="ti-dashboard"></i><span>Administration </span></a>
@@ -24,8 +30,10 @@
                             @can('Roles List')
                             <li class="active"><a href="{{route('roles.index')}}">Role</a></li>
                             @endcan
+                            @can('User List')
 
                             <li><a href="{{route('users.index')}}">User</a></li>
+                            @endcan
                         </ul>
                     </li>
                     @endcanany
