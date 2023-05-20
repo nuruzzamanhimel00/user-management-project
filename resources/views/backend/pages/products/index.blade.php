@@ -37,15 +37,15 @@
                             <td>
                                 @can('User Edit')
 
-                                <a href="{{ route('users.edit',['user'=>$product->id]) }}" class="btn btn-success btn-sm">Edit</a>
+                                <a href="{{ route('products.edit',['product'=>$product->id]) }}" class="btn btn-success btn-sm">Edit</a>
                                 @endcan
                                 @can('User Delete')
 
-                                <a href="{{ route('users.destroy',['user'=>$product->id]) }}"
+                                <a href="{{ route('products.destroy',['product'=>$product->id]) }}"
                                    data-dltform="role_form_{{ $product->id }}"
                                     class="btn btn-danger btn-sm dlt_btn">Delete</a>
 
-                                <form  action="{{ route('users.destroy',['user'=>$product->id]) }}" method="POST" class="d-none" id="role_form_{{ $product->id }}">
+                                <form  action="{{ route('products.destroy',['product'=>$product->id]) }}" method="POST" class="d-none" id="role_form_{{ $product->id }}">
                                     @csrf
                                     {{-- // method spoofing --}}
                                     @method("DELETE")

@@ -27,6 +27,18 @@ class ProductSerivce
         try {
             if(!is_null($id)){
 
+                $data['updated_by'] = Auth::id();
+                    $object = Product::findOrFail($id);
+
+                    if (isset($data['image']) && $data['image'] != null) {
+                        $data['image'] = $this->uploadFile($data['image'], $object->image) ;
+                    }
+
+                      // Update product
+                      $object->update($data);
+                      return true;
+
+
             }else{
                 $data['created_by'] = Auth::id();
                 if (isset($data['image']) && $data['image'] != null) {
@@ -81,10 +93,8 @@ class ProductSerivce
         try {
             // Delete image form public directory
 
-                Storage::disk('public')->delete($path);
-
-
-//            if (file_exists($path)) unlink($path);
+                // Storage::disk('public')->delete($path);
+           if (file_exists($path)) unlink($path);
         } catch (\Exception $ex) {
         }
     }

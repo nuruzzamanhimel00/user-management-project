@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\ProductRequest;
+use App\Models\Product;
 use App\Services\Common\ProductSerivce;
 
 class ProductController extends Controller
@@ -55,8 +56,7 @@ class ProductController extends Controller
         } catch (\Exception $e) {
             DB::rollBack();
             return redirect()->route('products.index')->with('error','Something is wrong!!');
-            // dd($e->getMessage());
-            //throw $th;
+
         }
 
     }
@@ -72,17 +72,29 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Product $product)
     {
-        //
+        set_page_meta('Product Edit');
+        // dd($product);
+        return view('backend.pages.products.edit',compact('product'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ProductRequest $request, string $id)
     {
-        //
+        $data = $request->validated();
+        try {
+            DB::beginTransaction();
+            $this->productSerivce->createOrUpdate($data, $id);
+            DB::commit();
+            return redirect()->route('products.index')->with('success','Products Update Sucessfully');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->route('products.index')->with('error','Something is wrong!!');
+
+        }
     }
 
     /**
