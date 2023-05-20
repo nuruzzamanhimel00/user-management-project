@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\User;
+
 if (!function_exists('get_page_meta')) {
 
     function get_page_meta($metaName = "title", $raw=false)
@@ -29,3 +31,30 @@ if (!function_exists('set_page_meta')) {
         }
     }
 }
+
+if (!function_exists('user_assign_roles')) {
+
+    function user_assign_roles($userId)
+    {
+        return User::find($userId)->roles;
+    }
+}
+
+if (!function_exists('user_assign_roles_display')) {
+
+    function user_assign_roles_display($userId)
+    {
+        $roles_name = [];
+        $user_roles =user_assign_roles($userId);
+        if(count($user_roles) > 0){
+            foreach($user_roles as $role){
+
+                array_push($roles_name,$role->name);
+            }
+            return implode(',',$roles_name);
+        }
+
+        // dd('roles_name',$roles_name, );
+    }
+}
+

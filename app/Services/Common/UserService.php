@@ -20,6 +20,10 @@ class UserService
         return User::latest()->get();
     }
 
+    public function get($id){
+        return User::find($id);
+    }
+
     public function storeOrUpdate($data, $id=null){
         try {
             if($data['password'] == null){
@@ -30,10 +34,10 @@ class UserService
             request()->isMethod('PUT') ?
             $data['updated_by'] = Auth::id()
             : $data['created_by'] = Auth::id();
-
+            // dd($data, $id);
             //conditional wise user update or create
             $user = $this->userUpdateOrCreate($data, $id);
-
+            // dd($user);
             if(isset($data['role']) && !is_null($data['role']) ){
                 //user role assign
                 $this->rolesService->modelHasRoleAssign($user, $data['role']) ;
@@ -47,7 +51,8 @@ class UserService
             }
 
             return true;
-        } catch (\Throwable $th) {
+        } catch (\Exception $e) {
+            dd($e->getMessage());
             //throw $th;
         }
     }

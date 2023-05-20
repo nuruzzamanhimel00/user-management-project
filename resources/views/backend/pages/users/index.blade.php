@@ -18,6 +18,7 @@
                             <th>id</th>
                             <th>name</th>
                             <th>Email</th>
+                            <th>Roles</th>
                             <th>Action</th>
 
                         </tr>
@@ -29,10 +30,9 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
+                            <td>{{ user_assign_roles_display($user->id) }}</td>
 
                             <td>
-                                <a href="{{ route('users.show',['user'=>$user->id]) }}" class="btn btn-success btn-sm">View</a>
-
 
                                 <a href="{{ route('users.edit',['user'=>$user->id]) }}" class="btn btn-success btn-sm">Edit</a>
 

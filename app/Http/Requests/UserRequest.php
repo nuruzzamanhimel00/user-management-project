@@ -22,7 +22,7 @@ class UserRequest extends FormRequest
      */
     public function rules(): array
     {
-        $id = request()->route('customer');
+        $id = request()->route('user');
         $rules = [
             'name' => [ 'string', 'max:50'],
             'email' => ['required', 'string', 'max:50', Rule::unique('users')->ignore($id)],

@@ -20,6 +20,7 @@ class UserController extends Controller
     }
     public function index()
     {
+
         set_page_meta('User List');
         $users = $this->userService->getLatestUser();
         return view('backend.pages.users.index',compact('users'));
@@ -66,15 +67,31 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $user = $this->userService->get($id);
+        $roles = $this->rolesService->getAllRoles();
+        set_page_meta('Edit Customer');
+        return view('backend.pages.users.edit', compact('user','roles'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UserRequest $request, string $id)
     {
-        //
+        $data = $request->validated();
+        // dd($data,  $id);
+        try {
+            DB::beginTransaction();
+            $this->userService->storeOrUpdate($data, $id);
+            DB::commit();
+            return redirect()->route('users.index')->with('success','Users Updated Sucessfully');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->route('users.index')->with('error','Something is wrong!!');
+        }
+
+
+
     }
 
     /**
