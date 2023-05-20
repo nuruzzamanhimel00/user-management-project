@@ -28,6 +28,7 @@ class ProductController extends Controller
     {
         set_page_meta('User List');
         $products = $this->productSerivce->getLatestProducts();
+        // dd($products);
         return view('backend.pages.products.index',compact('products'));
     }
 

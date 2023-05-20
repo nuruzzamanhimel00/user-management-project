@@ -11,4 +11,5 @@ class Product extends Model
     protected $guarded = [''];
 
     public const FILE_STORE_PATH = 'products';
+    public const FILE_STORE_PATH_IMAGE = 'images/products';
 }

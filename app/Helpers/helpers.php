@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 
 if (!function_exists('get_page_meta')) {
 
@@ -66,4 +67,15 @@ function generateSlug($value)
     } catch (\Exception $e) {
         return '';
     }
+}
+
+function getStorageImage( $name ,$path )
+{
+    // if ($name && Storage::exists($path . '/' . $name)) {
+    if ($name && file_exists($path . '/' . $name)) {
+
+        return asset($path.'/'.$name) ;
+
+    }
+   return asset('images/default.png');
 }

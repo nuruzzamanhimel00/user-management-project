@@ -44,7 +44,7 @@ class ProductSerivce
 
     public function uploadFile($file, $old_name = null, $upload_path = null)
     {
-        $path = !is_null($upload_path) ? $upload_path : Product::FILE_STORE_PATH;
+        $path = !is_null($upload_path) ? $upload_path : Product::FILE_STORE_PATH_IMAGE;
         if ($old_name) {
             // Delete and upload
             // Delete old
@@ -69,7 +69,8 @@ class ProductSerivce
                 $name = generateSlug($extract_name[0]) . '-' . time() . '.' . $file->getClientOriginalExtension();
             }
             // Store image to public disk
-            $file->storeAs($path, $name);
+            $file->move($path, $name);
+            // $file->storeAs($path, $name);
             return $name ?? '';
         } catch (\Exception $ex) {
             return '';

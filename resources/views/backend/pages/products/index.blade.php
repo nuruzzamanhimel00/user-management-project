@@ -31,7 +31,7 @@
                             <td>{{ $product->name }}</td>
 
                             <td>
-                                <img src="https://picsum.photos/200/300" alt="" class="img-fluid" width="50" height="50">
+                                <img src="{{getStorageImage($product->image, \App\Models\Product::FILE_STORE_PATH_IMAGE)}}" alt="" class="img-fluid" width="50" height="50">
                             </td>
 
                             <td>
