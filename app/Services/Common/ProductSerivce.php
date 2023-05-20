@@ -98,4 +98,15 @@ class ProductSerivce
         } catch (\Exception $ex) {
         }
     }
+
+    public function productDelete($product){
+        if(!is_null($product->image)){
+            $path = Product::FILE_STORE_PATH_IMAGE;
+            $this->delete($path . '/' . $product->image);
+        }
+
+        $product->delete();
+        return true;
+
+    }
 }
