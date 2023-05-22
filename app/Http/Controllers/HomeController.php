@@ -24,7 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $users = User::get();
+        $users = User::paginate(10);
+        // dd($users);
         return view('backend.pages.index', compact('users'));
     }
 }
