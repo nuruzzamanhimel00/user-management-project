@@ -14,4 +14,4 @@
     <link rel="stylesheet" href="{{asset('backend/assets/css/responsive.css')}}">
     <link rel="stylesheet" href="{{asset('backend/sweetalert/sweetalert.min.css')}}">
 
-    @stack('style')
+    @stack('stylesheet')
